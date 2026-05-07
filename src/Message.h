@@ -2,12 +2,12 @@
 #define MESSAGE_H
 #include <string>
 
-class Message{
+class Message {
 public:
-    int user_id;
+    int user_id = 0; 
     std::string text;
     std::string timestamp;
     std::string encrypted_content;
 };
 
-#endif // MESSAGE_H
+#endif

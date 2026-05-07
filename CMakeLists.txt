@@ -12,7 +12,13 @@ FetchContent_Declare(
   GIT_REPOSITORY https://github.com/ArthurSonzogni/FTXUI
   GIT_TAG v5.0.0
 )
-FetchContent_MakeAvailable(ftxui)
+FetchContent_Declare(
+  json
+  GIT_REPOSITORY https://github.com/nlohmann/json.git
+  GIT_TAG v3.11.2
+)
+FetchContent_MakeAvailable(ftxui json)
+
 
 # Вказуємо папку з хедерами, щоб в коді писати просто #include "core/Encryptor.h"
 include_directories(src)
@@ -31,8 +37,7 @@ set(SOURCES
 add_executable(broadcast ${SOURCES})
 
 # Прив'язуємо бібліотеку UI
-target_link_libraries(broadcast PRIVATE ftxui::screen ftxui::dom ftxui::component)
-
+target_link_libraries(broadcast PRIVATE ftxui::screen ftxui::dom ftxui::component nlohmann_json::nlohmann_json)
 # Якщо компілюємо під Windows - додаємо бібліотеку сокетів Winsock2
 if(WIN32)
     target_link_libraries(broadcast PRIVATE ws2_32)

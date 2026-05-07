@@ -8,10 +8,10 @@ class ChatServer{
 private:
     int port;
     std::vector<int> client_sockets;
-    int socket_fd;
+    int server_fd;
 public:
-    Chat_Server(int p);
-    ~Chat_Server();
+    ChatServer(int p);
+    ~ChatServer();
     
     void listen_loop();
     void broadcast(const Message& msg);

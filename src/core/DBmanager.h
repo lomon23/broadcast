@@ -1,17 +1,15 @@
 #ifndef DBMANAGER_H
 #define DBMANAGER_H
-#include <string>
+
 #include <vector>
+#include <string>
 #include "../Message.h"
+
 class DBManager {
-private:
-    static inline const std::string file_path = "history.json";
-    // розібрати чому static inline const 
 public:
+    // Статичні методи, щоб не створювати об'єкт класу кожен раз
     static void write_message(const Message& msg);
-    static std::vector<Message> read_all_history();
-    // розібрати як в зхедерах робити вектори  
+    static std::vector<Message> read_all_messages(); 
 };
 
-#endif // DBMANAGER_H
-
+#endif
