@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <string>
-#include <functional> // Для std::function
+#include <functional> 
 #include "../Message.h"
 #include <ftxui/component/component.hpp>
 #include <ftxui/component/screen_interactive.hpp>

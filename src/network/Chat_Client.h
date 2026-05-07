@@ -15,7 +15,6 @@ private:
 public: 
     ChatClient(const std::string& ip, int p);
     ~ChatClient();
-    // розібрати як працюють конструктори, просто , та в самих хедерах 
     void connect_to_server();
     void send_payload(const Message& msg);
     void receive_loop(std::function<void(const std::string&)> on_message_received);
