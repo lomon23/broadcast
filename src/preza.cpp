@@ -6,7 +6,7 @@
 
 using namespace ftxui;
 
-int main() {
+int run_presentation() {
     int tab_index = 0;
     std::vector<std::string> tab_entries = {
         " [0] Init        ",

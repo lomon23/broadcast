@@ -11,12 +11,12 @@
 class UI_Engine {
 private:
     std::string current_input;
-    std::string username;
+
     std::vector<Message> chat_history;
     ftxui::ScreenInteractive screen = ftxui::ScreenInteractive::TerminalOutput();
 public:
     UI_Engine();
-
+    std::string username;
     void run_login_screen();
     void run_chat_interface(std::function<void(std::string)> on_send_callback);
     void update_messages(const std::vector<Message>& history);

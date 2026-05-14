@@ -20,10 +20,12 @@ FetchContent_MakeAvailable(ftxui json)
 include_directories(src)
 
 set(SOURCES
+    
     src/AppLauncher.cpp
     src/network/Chat_Client.cpp
     src/network/Chat_Server.cpp
     src/ui/UI_Engine.cpp
+    src/preza.cpp
     src/core/DBmanager.cpp
     src/core/Encryptor.cpp
 )
