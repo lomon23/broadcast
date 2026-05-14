@@ -128,7 +128,7 @@ void UI_Engine::run_chat_interface(std::function<void(std::string)> on_send_call
         }
 
         return vbox({
-            // Хедер: назва зліва, користувач справа
+            // Хедер
             hbox({
                 text(" BROADCAST CHAT ") | bold,
                 filler(), 
@@ -138,12 +138,14 @@ void UI_Engine::run_chat_interface(std::function<void(std::string)> on_send_call
             }),
             separator(),
             
-            // Чат: прибрали filler(), тепер повідомлення липнуть до верхнього сепаратора
-            vbox(msg_elements) | yframe, 
+            // ЧАТ: Повідомлення зверху, філлер знизу «з'їдає» пустоту і притискає інпут
+            vbox({
+                vbox(msg_elements),
+                filler() 
+            }) | yframe, 
             
-            separator(),
             
-            // Інпут
+            // ІНПУТ
             hbox({
                 text(" > ") | bold | color(Color::Green),
                 input_field->Render()

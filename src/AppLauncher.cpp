@@ -43,7 +43,7 @@ int main() {
         std::cin >> port;
         ChatServer server(port);
         server.listen_loop(); 
-    } 
+    }
     else if (choice == 2) {
         std::string ip;
         int port;
