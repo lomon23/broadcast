@@ -1,23 +1,56 @@
-# broadcast
+# Broadcast
 
-# Про що? 
-брод каст, це значення чату в якому немає поділу на приватні чати, це один суцільний чат, в якому всі можуть переписуватись, це нас вертає в гіковські часи 2000х, де цбула база для форумів
+## About
+Broadcast is a global terminal-based chat system without private rooms—just one continuous stream where everyone communicates together. It brings back the raw, geeky 2000s vibe, reminiscent of the era that laid the foundation for classic internet forums.
 
-# Основна ідея:
-створити свій socket сервер на чистому с++ з своїм шифруванням
-зробити початкове меню, де ти повинен підключитись по посиланню до цього бродкасту і в ньому вже можна переписуватись, і добавити інструкцію накшталт, склонуйте проект, скачайте таку апку, захосьте, і давайте це посилання своїм друзям/всім
+## Core Idea
+The project relies on a custom TCP socket server written in pure C++ with custom encryption. Upon launch, you enter a startup menu where you can host a server or connect to an existing broadcast session via IP and Port. 
+The main workflow: clone the project, build the app, host the server, and share your IP/Port with friends to chat globally.
 
-# Stack:                
-* c++ 17
-* FTXUIW
-* CMake
+## Tech Stack
+* **C++17**
+* **FTXUI** (Functional Terminal Extension UI)
+* **CMake**
 
-# live cycle
-Потік А (Main/UI): FTXUI малює чат і чекає, поки ти натиснеш Enter. Коли натиснув — робить send() на сервер.
+## Prerequisites
+To build the project from source, ensure you have the following installed on your system:
+* CMake (>= 3.10)
+* A C++17 compatible compiler (GCC or Clang)
+* Make
 
-Потік Б (Receiver): Нескінченний цикл while(true) { recv(...) }. Як тільки від сервера прилетів бродкаст, цей потік оновлює вектор повідомлень у пам'яті, і FTXUI автоматично перемальовує екран.
+## Build Instructions
+Clone the repository and build the project using standard CMake commands:
 
-Клієнт (об'єкт) -> JSON string -> Сокет -> Сервер (JSON string) -> Файл -> Сервер (JSON string) -> Сокет -> Усі клієнти (JSON string) -> Клієнт (об'єкт) -> UI
+```bash
+git clone <your_repository_url>
+cd broadcast
+mkdir build && cd build
+cmake ..
+make
+```
+Run the executable:
+
+```bash
+./broadcast
+```
+Package Installation (Fedora / RHEL)
+
+If you have the pre-built .rpm package (broadcast-lomon), you can install it directly via dnf without building from source:
+
+```bash 
+sudo dnf install ./broadcast-lomon-1.0-1.fcXX.x86_64.rpm
+```
+Once installed, simply run broadcast-lomon from any terminal.
+Architecture & Lifecycle
+
+Thread A (Main/UI): FTXUI renders the chat interface and waits for the user to press Enter. Once triggered, it encrypts the message and executes a send() to the server.
+
+Thread B (Receiver): An infinite loop running while(true) { recv(...) }. As soon as a broadcast packet arrives from the server, this thread updates the message vector in memory, and FTXUI automatically triggers a screen redraw.
+
+Data Flow:
+Client (Object) ➔ JSON string ➔ TCP Socket ➔ Server (JSON string) ➔ File (JSON DB) ➔ Server ➔ TCP Socket ➔ All Clients (JSON string) ➔ Decrypt ➔ Client (Object) ➔ UI Update
+
+
 # Class diagram:
 ```mermaid
 classDiagram
