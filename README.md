@@ -22,7 +22,7 @@ To build the project from source, ensure you have the following installed on you
 Clone the repository and build the project using standard CMake commands:
 
 ```bash
-git clone <https://github.com/lomon23/broadcast.git>
+git clone https://github.com/lomon23/broadcast.git
 cd broadcast
 mkdir build && cd build
 cmake ..
